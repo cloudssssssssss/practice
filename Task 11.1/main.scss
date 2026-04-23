@@ -6,26 +6,18 @@
 .header {
   background: $bg-light;
   padding: 25px 0;
-
   .nav-list {
     @include flex-center;
     list-style: none;
     gap: 25px;
-
     a {
       text-decoration: none;
       color: $text-dark;
       font-weight: bold;
       font-size: 14px;
     }
-
-    @include respond-to(tablet) {
-      flex-wrap: wrap;
-    }
-
-    @include respond-to(mobile) {
-      flex-direction: column;
-    }
+    @include respond-to(tablet) { flex-wrap: wrap; }
+    @include respond-to(mobile) { flex-direction: column; }
   }
 }
 
@@ -33,19 +25,15 @@
   background: $bg-light;
   padding: 80px 0;
   text-align: left;
-
   .hero-content {
     max-width: 550px;
-
     h1 {
       font-size: 45px;
       margin-bottom: 20px;
-
       @include respond-to(tablet) { font-size: 32px; }
       @include respond-to(mobile) { font-size: 26px; }
     }
   }
-
   @include respond-to(tablet) {
     text-align: center;
     .hero-content { margin: 0 auto; }
@@ -56,21 +44,15 @@
   background: $accent-blue;
   color: $white;
   padding: 50px 0;
-
   .stats-flex {
     @include flex-between;
     flex-wrap: wrap;
     gap: 20px;
-
-    @include respond-to(tablet) {
-      justify-content: center;
-    }
-
+    @include respond-to(tablet) { justify-content: center; }
     .stat-item {
       display: flex;
       align-items: center;
       font-size: 14px;
-
       @include respond-to(mobile) {
         width: 100%;
         justify-content: center;
