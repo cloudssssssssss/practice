@@ -25,7 +25,6 @@ body {
     padding: 0 20px;
 }
 
-/* Flexbox Navigation */
 .header {
     background: var(--bg-light);
     padding: 30px 0;
@@ -33,7 +32,7 @@ body {
 
 .nav-list {
     display: flex;
-    justify-content: center; /* Центрування пунктів меню */
+    justify-content: center;
     list-style: none;
     gap: 30px;
 }
@@ -45,7 +44,6 @@ body {
     font-weight: bold;
 }
 
-/* Hero Section */
 .hero {
     background: var(--bg-light);
     padding: 100px 0;
@@ -71,7 +69,6 @@ body {
     font-size: 14px;
 }
 
-/* Sections General */
 section {
     padding: 80px 0;
     text-align: center;
@@ -88,7 +85,6 @@ section p {
     color: var(--text-gray);
 }
 
-/* Stats Bar Flexbox */
 .stats {
     background: var(--accent-blue);
     padding: 60px 0;
@@ -97,7 +93,7 @@ section p {
 
 .stats-flex {
     display: flex;
-    justify-content: space-around; /* Рівномірний розподіл іконок */
+    justify-content: space-around;
     flex-wrap: wrap;
     gap: 20px;
 }
@@ -108,7 +104,6 @@ section p {
     gap: 10px;
 }
 
-/* Video Placeholder */
 .video-placeholder {
     width: 100%;
     height: 450px;
@@ -137,7 +132,6 @@ section p {
     top: 25px;
 }
 
-/* Footer */
 .footer {
     background: var(--accent-blue);
     color: var(--white);
