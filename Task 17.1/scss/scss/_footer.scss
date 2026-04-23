@@ -1,0 +1,31 @@
+.footer {
+    background: $dark;
+    color: $white;
+    padding: 60px 0 20px;
+
+    &__content {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 40px;
+        @include mobile { flex-direction: column; gap: 30px; }
+    }
+
+    &__info {
+        max-width: 300px;
+        p { margin-top: 15px; opacity: 0.7; }
+    }
+
+    &__links {
+        h4 { margin-bottom: 20px; }
+        ul { list-style: none; }
+        li { margin-bottom: 10px; opacity: 0.7; &:hover { opacity: 1; } }
+    }
+
+    &__copy {
+        text-align: center;
+        padding-top: 20px;
+        border-top: 1px solid rgba($white, 0.1);
+        font-size: 0.9rem;
+        opacity: 0.5;
+    }
+}

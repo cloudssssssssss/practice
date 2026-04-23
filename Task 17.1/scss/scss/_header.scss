@@ -1,0 +1,5 @@
+@use 'variables' as *; // Це підключає кольори до цього файлу
+.header {
+    background: $white; padding: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    .nav { display: flex; justify-content: space-between; align-items: center; }
+}
