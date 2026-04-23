@@ -1,0 +1,33 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.btn {
+  display: inline-block;
+  background: $accent-blue;
+  color: $white;
+  padding: 15px 35px;
+  text-decoration: none;
+  margin-top: 25px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+
+  @include respond-to(mobile) {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+.video-box {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #ccc url('https://via.placeholder.com/1200x600') center/cover;
+  @include flex-center;
+
+  .play-button {
+    width: 70px;
+    height: 70px;
+    background: $white;
+    border-radius: 50%;
+  }
+}
