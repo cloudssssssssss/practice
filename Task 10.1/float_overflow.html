@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Обтікання та переповнення</title>
+    <style>
+        .float-img { float: left; width: 100px; height: 100px; background: blue; margin: 10px; }
+        .clear-fix { clear: both; background: lightgreen; padding: 10px; }
+        .scroll-container { width: 250px; height: 120px; border: 2px solid red; overflow: scroll; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="float-img"></div>
+    <p>Цей текст обтікає синій блок збоку. Використання властивості float дозволяє тексту займати вільний простір навколо елемента.</p>
+    
+    <div class="clear-fix">Цей блок скидає обтікання через властивість clear.</div>
+
+    <h3>Приклад роботи з overflow:</h3>
+    <div class="scroll-container">
+        <div style="width: 450px; height: 250px; background: linear-gradient(to bottom right, gray, lightgray);">
+            Контент значно більший за межі батьківського контейнера, тому з'явилася прокрутка.
+        </div>
+    </div>
+</body>
+</html>
