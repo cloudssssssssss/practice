@@ -1,16 +1,19 @@
-# React + Vite
+# HW 43.1: React Router Navigation
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Цей проект реалізує базову маршрутизацію в React додатку.
 
-Currently, two official plugins are available:
+## Що зроблено:
+- Встановлено та налаштовано `react-router-dom`.
+- Створено 3 окремі компоненти: **Home**, **About**, **Contact**.
+- Використано `BrowserRouter`, `Routes` та `Route` для керування шляхами.
+- Реалізовано навігаційне меню за допомогою `NavLink`.
+- **Фішка**: Налаштовано динамічні стилі для активних посилань (підсвітка поточної сторінки).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Як запустити:
+1. `npm install`
+2. `npm run dev`
 
-## React Compiler
+## Деплой на Vercel:
+Для коректної роботи маршрутів (щоб не було 404 при оновленні сторінки) додано файл `vercel.json` з налаштуванням rewrites.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+**Демо:** [(https://task-43.vercel.app/)]
