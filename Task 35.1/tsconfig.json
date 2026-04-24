@@ -1,0 +1,1 @@
+{ "compilerOptions": { "outDir": "./dist/", "module": "ESNext", "target": "ESNext", "moduleResolution": "bundler", "allowJs": true, "esModuleInterop": true, "skipLibCheck": true } }
