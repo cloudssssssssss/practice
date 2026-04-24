@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Моторний Слайдер</title>
+    <style>
+        /* CSS блоки */
+        .slider {
+            position: relative;
+            width: 800px; /* Трохи розширив для кращого вигляду */
+            height: 400px;
+            margin: 40px auto;
+            overflow: hidden; 
+            border: 4px solid #333;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .slides-container {
+            display: flex; 
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            height: 100%;
+        }
+
+        .slide {
+            min-width: 100%; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+        }
+
+        .controls {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            background: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin: 0 5px;
+            transition: opacity 0.2s;
+        }
+
+        button:hover { opacity: 0.8; }
+
+        .indicators {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .dot {
+            height: 15px;
+            width: 15px;
+            margin: 0 8px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .dot.active {
+            background-color: #333;
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="slider" id="main-slider">
+        <div class="slides-container">
+            <div class="slide" style="background-color: #f39c12;">Слайд 1</div>
+            <div class="slide" style="background-color: #3498db;">Слайд 2</div>
+            <div class="slide" style="background-color: #2ecc71;">Слайд 3</div>
+        </div>
+
+        <div class="controls">
+            <button class="prev">← Назад</button>
+            <button class="pause">Пауза</button>
+            <button class="next">Вперед →</button>
+        </div>
+
+        <div class="indicators"></div>
+    </div>
+
+    <script>
+        const sliderInit = (selector, intervalTime = 3000) => {
+            const slider = document.querySelector(selector);
+            const container = slider.querySelector('.slides-container');
+            const slides = slider.querySelectorAll('.slide');
+            const prevBtn = slider.querySelector('.prev');
+            const nextBtn = slider.querySelector('.next');
+            const pauseBtn = slider.querySelector('.pause');
+            const indicatorsContainer = slider.querySelector('.indicators');
+
+            let currentIndex = 0;
+            let isPaused = false;
+            let timerId = null;
+            let startX = 0;
+
+            const showSlide = (index) => {
+                if (index >= slides.length) currentIndex = 0;
+                else if (index < 0) currentIndex = slides.length - 1;
+                else currentIndex = index;
+
+                container.style.transform = `translateX(-${currentIndex * 100}%)`;
+                updateIndicators();
+            };
+
+            const nextSlide = () => showSlide(currentIndex + 1);
+            const prevSlide = () => showSlide(currentIndex - 1);
+
+            const startTimer = () => {
+                stopTimer();
+                timerId = setInterval(() => {
+                    if (!isPaused) nextSlide();
+                }, intervalTime);
+            };
+
+            const stopTimer = () => clearInterval(timerId);
+
+            const togglePause = () => {
+                isPaused = !isPaused;
+                pauseBtn.textContent = isPaused ? 'Продовжити' : 'Пауза';
+            };
+
+            const createIndicators = () => {
+                slides.forEach((_, i) => {
+                    const dot = document.createElement('span');
+                    dot.classList.add('dot');
+                    dot.addEventListener('click', () => showSlide(i));
+                    indicatorsContainer.appendChild(dot);
+                });
+            };
+
+            const updateIndicators = () => {
+                const dots = indicatorsContainer.querySelectorAll('.dot');
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === currentIndex);
+                });
+            };
+
+            const handleKeyboard = (e) => {
+                if (e.key === 'ArrowLeft') prevSlide();
+                if (e.key === 'ArrowRight') nextSlide();
+            };
+
+            const handleDragStart = (e) => {
+                startX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+            };
+
+            const handleDragEnd = (e) => {
+                const endX = e.type.includes('touch') ? e.changedTouches[0].clientX : e.clientX;
+                const diff = startX - endX;
+                if (Math.abs(diff) > 50) {
+                    diff > 0 ? nextSlide() : prevSlide();
+                }
+            };
+
+            const init = () => {
+                createIndicators();
+                updateIndicators();
+                startTimer();
+
+                nextBtn.addEventListener('click', nextSlide);
+                prevBtn.addEventListener('click', prevSlide);
+                pauseBtn.addEventListener('click', togglePause);
+                document.addEventListener('keydown', handleKeyboard);
+
+                slider.addEventListener('mousedown', handleDragStart);
+                slider.addEventListener('mouseup', handleDragEnd);
+                slider.addEventListener('touchstart', handleDragStart, {passive: true});
+                slider.addEventListener('touchend', handleDragEnd);
+            };
+
+            init();
+        };
+
+        // Запуск після завантаження DOM
+        document.addEventListener('DOMContentLoaded', () => {
+            sliderInit('#main-slider', 5000);
+        });
+    </script>
+</body>
+</html>
